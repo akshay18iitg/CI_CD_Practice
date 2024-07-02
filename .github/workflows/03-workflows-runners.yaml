@@ -1,4 +1,4 @@
-name: 03 - Worklfow Runners
+name: 03 Worklfow Runners
 on: push
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
           echo "This job is runnig on an Windows runner."
           echo '$RUNNER_OS'
   
-  max-echo:
+  mac-echo:
   runs-on: macos-latest
   steps:
     - name: SHOW OS
