@@ -11,16 +11,16 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      if: ${{inputs.debug}} == True
       - name: [debug] Print start-up data
+      if: ${{inputs.debug}} == True
       run: |
         echo "Triggered by: ${{github.event_name}}"
         echo "Branch: ${{github.ref}}"
         echo "Commit SHA: ${{github.sha}}"
         echo "Runner OS: ${{runner.os}}"
 
-      if: ${{inputs.debug}} == True and ${{github.workflow}} == 'main'
       - name: [debug] Print when triggered from main
+      if: ${{inputs.debug}} == True && ${{github.workflow}} == 'main'
       run: echo "I was triggered from main"
 
       - name: Greeting
