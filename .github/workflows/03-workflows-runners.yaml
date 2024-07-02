@@ -3,12 +3,12 @@ on: push
 
 jobs:
   ubuntu-echo:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Show OS
-      run: |
-        echo "This job is runnig on an Ubuntu runner."
-        echo '$RUNNER_OS'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show OS
+        run: |
+          echo "This job is runnig on an Ubuntu runner."
+          echo '$RUNNER_OS'
   
   windows-echo:
     runs-on: windows-latest
