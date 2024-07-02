@@ -25,3 +25,4 @@ jobs:
 
       - name: I will execute when cancelled
         if: ${{ cancelled() }}
+        run: echo "I will be executed of workflow is cancelled"
