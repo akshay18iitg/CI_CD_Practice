@@ -35,9 +35,9 @@ jobs:
       - name: Print Env Variables
         env:
           MY_OVERWRITTEN_VAR: step
-          run: |
-            echo "MY JOB VAR is ${{env.MY_JOB_VAR}}"
-            echo "MY OVERWRITTEN VAR is ${{env.MY_OVERWRITTEN_VAR}}"
+        run: |
+          echo "MY JOB VAR is ${{env.MY_JOB_VAR}}"
+          echo "MY OVERWRITTEN VAR is ${{env.MY_OVERWRITTEN_VAR}}"
 
       - name: Print Env Variables
         run: |
