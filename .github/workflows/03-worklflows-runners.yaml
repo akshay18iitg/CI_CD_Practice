@@ -1,0 +1,28 @@
+name: 03 - Worklfow Runners
+on: push
+
+jobs:
+  ubuntu-echo:
+  runs-on: ubuntu-latest
+    steps:
+      - name: Show OS
+        run: |
+          echo "This job is runnig on an Ubuntu runner."
+          echo '$RUNNER_OS'
+  
+  windows-echo:
+  runs-on: windows-latest
+  steps:
+    - name: SHOW OS
+      shell: bash
+      run: |
+          echo "This job is runnig on an Windows runner."
+          echo '$RUNNER_OS'
+  
+  max-echo:
+  runs-on: macos-latest
+  steps:
+    - name: SHOW OS
+      run: |
+          echo "This job is runnig on an macOS runner."
+          echo '$RUNNER_OS'
