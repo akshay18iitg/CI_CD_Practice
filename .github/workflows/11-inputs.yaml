@@ -9,7 +9,7 @@ on:
       
       target:
         type: environment
-        required: true
+        # required: true
         default: prod
         description: which environment the worflow will target
 
