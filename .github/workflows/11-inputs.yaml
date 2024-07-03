@@ -10,6 +10,7 @@ on:
       target:
         type: environment
         required: true
+        default: prod
         description: which environment the worflow will target
 
       tag:
@@ -32,7 +33,6 @@ jobs:
     needs:
       - build
     if: ${{ !inputs.dry-run }}
-
     steps:
       - name: Deploy
         run: echo "Deploying to ${{ inputs.target }}"
