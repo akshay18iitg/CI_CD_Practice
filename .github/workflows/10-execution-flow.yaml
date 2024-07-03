@@ -1,9 +1,10 @@
 name: 10 - Controlling the Execution Flow
 on:
   workflow_dispatch:
-    pass-unit-tests:
-      type: boolean
-      default: false
+    inputs:
+      pass-unit-tests:
+        type: boolean
+        default: false
   
 
 jobs:
@@ -21,7 +22,7 @@ jobs:
         run: echo "Running tests..."
 
       - name: Failing tests
-        if: ${{!pass-unit-tests}}
+        if: ${{pass-unit-tests}}
         run: exit 0
   
   deploy-nonprod:
@@ -57,4 +58,3 @@ jobs:
     steps:
       - name: Deploying to prod
         run: echo "Deploying to prod"
-        
