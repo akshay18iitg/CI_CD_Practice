@@ -28,8 +28,8 @@ jobs:
   deploy-nonprod:
     runs-on: ubuntu-latest
     needs:
-      lint-build
-      unit-tests
+      - lint-build
+      - unit-tests
     steps:
       - name: Deploying to nonprod
         run: echo "Deploying to nonprod"
@@ -37,7 +37,7 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
     needs:
-      deploy-nonprod
+      - deploy-nonprod
     steps:
       - name: Running E2E tests
         run: echo "Running E2E tests"
@@ -45,7 +45,7 @@ jobs:
   load-tests:
     runs-on: ubuntu-latest
     needs:
-      deploy-nonprod
+      - deploy-nonprod
     steps:
       - name: Running load tests
         run: echo "Running load tests"
@@ -53,8 +53,8 @@ jobs:
   deploy-pred:
     runs-on: ubuntu-latest
     needs:
-      e2e-tests
-      load-tests
+      - e2e-tests
+      - load-tests
     steps:
       - name: Deploying to prod
         run: echo "Deploying to prod"
