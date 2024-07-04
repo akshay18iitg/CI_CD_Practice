@@ -10,7 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    working-directory: 13-caching/react-app
+    defaults:
+      working-directory: 13-caching/react-app
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
