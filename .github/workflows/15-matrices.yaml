@@ -9,14 +9,14 @@ jobs:
       matrix:
         node-version: [18.x, 20.x, 21.x]
         os: [ubuntu-latest,windows-latest]
-        runs-on: ${{matrix.os}}
-        steps:
-          - name: Setup Node
-            uses: dcodeIO/setup-node-nvm@master
-            with:
-              node-version: ${{matrix.node-version}}
-          
-          - name: Perform some tests
-            run: |
-              echo "Running test on OS ${{matrix.os}} and NODEjs ${{matrix.node-version}}"
-              
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: Setup Node
+        uses: dcodeIO/setup-node-nvm@master
+        with:
+          node-version: ${{matrix.node-version}}
+      
+      - name: Perform some tests
+        run: |
+          echo "Running test on OS ${{matrix.os}} and NODEjs ${{matrix.node-version}}"
+
