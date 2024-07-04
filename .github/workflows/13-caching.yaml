@@ -100,11 +100,11 @@ jobs:
           node-version: ${{ inputs.node-version }}
 
       - name: Download cached dependencies
-      id: cache
-      uses: actions/cache@v3
-      with: 
-        path: 13-caching/react-app/node_modules
-        key: ${{ needs.install-deps.outputs.cached-key }}
+        id: cache
+        uses: actions/cache@v3
+        with: 
+          path: 13-caching/react-app/node_modules
+          key: ${{ needs.install-deps.outputs.cached-key }}
 
       - name: Testing
         run: npm run test
