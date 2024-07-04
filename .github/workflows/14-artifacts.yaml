@@ -36,7 +36,7 @@ jobs:
         run: npm run build
       
       - name: Upload build files
-        uses: actions/upload-artifacts@v4
+        uses: actions/upload-artifact@v4
         with:
           name: app
           path: 14-artifacts/react-app/build
@@ -50,5 +50,5 @@ jobs:
         with:
           name: app
           path: 14-artifacts/react-app/build
-          
+
       
