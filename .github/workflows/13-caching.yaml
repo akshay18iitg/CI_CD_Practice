@@ -46,3 +46,70 @@ jobs:
       
       - name: Deploying to nonprod
         run: echo "Deploying to nonprod"
+
+  install-deps:
+    runs-on: ubuntu-latest
+    needs: build
+    defaults:
+      run:
+        working-directory: 13-caching/reach-app
+
+    outputs:
+      cached-key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Steup Node
+        uses: dcodeIO/setup-node-nvm@master
+        with:
+          node-version: ${{ inputs.node-version }}
+        
+      - name: calculate cache key
+        id: cache-key
+        run: |
+          echo "CACHE_KEY = deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}" >> $"GITHUB_OUTPUT"
+
+      - name: Download cached dependencies
+        id: cache
+        if: ${{ inputs.use-cache }}
+        uses: actions/cache@v3
+        with: 
+          path: 13-caching/react-app/node_modules
+          key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+
+      - name: Install Dependencies
+        if: ${{ steps.cache.outputs.cache-hit != 'true'}}
+        run: npm ci
+
+  linitng:
+    runs-on: ubuntu-latest
+    needs: install-deps
+    defaults:
+      run:
+        working-directory: 13-cacahing/react-app
+    
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Steup Node
+        uses: dcodeIO/setup-node-nvm@master
+        with:
+          node-version: ${{ inputs.node-version }}
+
+       - name: Download cached dependencies
+        id: cache
+        uses: actions/cache@v3
+        with: 
+          path: 13-caching/react-app/node_modules
+          key: ${{ needs.install-deps.outputs.cached-key }}
+
+      - name: Testing
+        run: npm run test
+      
+      - name: Linting
+        run: echo "Linting ...."
+
