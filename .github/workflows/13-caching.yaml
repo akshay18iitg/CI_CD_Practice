@@ -6,6 +6,10 @@ on:
         type: boolean
         default: true
         description: Whether to execute cache step
+      node-version:
+        type: choice
+        options: [18.x,20.x,21.x]
+        default: 20.x
 
 jobs:
   build:
@@ -20,9 +24,17 @@ jobs:
       - name: Setup Node
         uses: dcodeIO/setup-node-nvm@master
         with:
-          node-version: 20.x
+          node-version: ${{ inputs.node-version }}
+      
+      - name: Download cached dependencies
+        id: cache
+        if: ${{ inputs.use-cache }}
+        uses: actions/cache@v3
+        with: 
+          deps-node-modules: ${{ hashFiles('13-caching/react-app/package-lock.json') }}
 
       - name: Install Dependencies
+        if: ${{ outputs.cache.cache-hit == 'true'}}
         run: npm ci
       
       - name: Testing
