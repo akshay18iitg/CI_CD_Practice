@@ -14,8 +14,8 @@ runs:
   steps:
     - name: Setup NodeJS version ${{ inputs.node-version }}
       uses: dcodeIO/setup-node@v3
-        with:
-          node-version: ${{ inputs.node-version }}
+      with:
+        node-version: ${{ inputs.node-version }}
     
     - name: Cache dependencies
       id: cache
