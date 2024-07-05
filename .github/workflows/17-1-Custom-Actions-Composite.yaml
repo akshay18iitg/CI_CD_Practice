@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{vars.working-directory}}
+        working-directory: ${{env.working-directory}}
 
     steps:
       - name: Checkout code
