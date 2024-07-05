@@ -14,7 +14,7 @@ runs:
     - name: Setup NodeJS version ${{ inputs.node-version }}
       uses: dcodeIO/setup-node-nvm@master
         with:
-          node-version: ${{matrix.node-version}}
+          node-version: ${{inputs.node-version}}
     
     - name: Cache dependencies
       id: cache
