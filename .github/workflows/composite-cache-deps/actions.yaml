@@ -6,7 +6,7 @@ inputs:
     default: 20.x
   working-dir:
     description: The working directory of the application
-    default: .github/workflow/composite-cache-deps/
+    default: '.'
 
 runs:
   using: composite
@@ -20,8 +20,8 @@ runs:
       id: cache
       uses: actions/cache@v3
       with:
-        path: ${{ inputs.working-dir }}
-        key:  deps-node-modules-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json')) }}
+        path: ${{ inputs.working-dir }}/node-modules
+        key:  node-modules-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json')) }}
 
     - name: Install dependencies
       if: ${{ steps.cache.outputs.cache-hit != 'true'}}
