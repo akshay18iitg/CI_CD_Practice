@@ -6,7 +6,7 @@ inputs:
     default: 20.x
   working-dir:
     description: The working directory of the application
-    default: '.'
+    default: .
 
 runs:
   using: composite
