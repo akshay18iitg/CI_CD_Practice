@@ -1,6 +1,9 @@
 name: 18 - 2 - Reusable Workflows
 on:
   workflow_dispatch:
+    outputs:
+      build-status: ${{ jobs.deploy.outputs.build-status}}
+      url: ${{ jobs.deploy.outputs.url }}
   
 jobs:
   deploy:
@@ -14,5 +17,5 @@ jobs:
     steps:
       - name: Print outputs
         run: |
-          echo "Build Status: ${{ jobs.deploy.outputs.build-status }}"
-          echo "URL: ${{ jobs.deploy.outputs.url}}"
+          echo "Build Status: ${{ outputs.build-status }}"
+          echo "URL: ${{ outputs.url}}"
