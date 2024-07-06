@@ -1,6 +1,6 @@
 import requests
 import time
-import 
+import os
 
 def set_output(file_path, key, value):
     with open(file_path,'a') as f:
