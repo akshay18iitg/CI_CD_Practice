@@ -2,10 +2,10 @@ name: 17 - 2 - Cusotm Actions - JS
 on:
   workflow_dispatch:
     inputs:
-      base-branch
-      target-branch
-      working-dir
-      debug
+      base-branch:
+      target-branch:
+      working-dir:
+      debug:
 
 run-name: 17 - 2 - Cusotm Actions - JS
 jobs:
