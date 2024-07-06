@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 
 def ping_url(url,delay,max_trials):
     trials = 0
@@ -13,7 +14,11 @@ def ping_url(url,delay,max_trials):
     return False
 
 def run():
-    if ping_url(INPUT_URL,INPUT_DELAY,INPUT_MAX_TRIALS) == False:
+    url = os.getenv('INPUT_URL')
+    delay = os.getenv('INPUT_DELAY')
+    max_trials = os.getenv('INPUT_MAX_TRIALS')
+
+    if ping_url(url,delay,max_trials) == False:
         raise Exception
 
     
