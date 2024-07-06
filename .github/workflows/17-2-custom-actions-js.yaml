@@ -1,6 +1,11 @@
 name: 17 - 2 - Cusotm Actions - JS
 on:
   workflow_dispatch
+    inputs:
+      base-branch
+      target-branch
+      working-dir
+      debug
 
 run-name: 17 - 2 - Cusotm Actions - JS
 jobs:
@@ -12,3 +17,10 @@ jobs:
       
       - name: Check for dependency updates
         uses: ./.github/actions/js-dependency-update
+        with:
+          base-branch: ${{ inputs.base-branch }}
+          target-branch: ${{ inputs.target-branch }}
+          working-directory: ${{ inputs.working-dir }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          debug: ${{ inputs.debug }}
+
