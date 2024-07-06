@@ -1,6 +1,6 @@
 name: 17 - 2 - Cusotm Actions - JS
 on:
-  workflow_dispatch
+  workflow_dispatch:
     inputs:
       base-branch
       target-branch
